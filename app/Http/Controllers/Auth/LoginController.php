@@ -49,9 +49,12 @@ class LoginController extends Controller
     public function loginPost(Request $request)
     {
         $userdata = $request -> only('mail_address', 'password');
+        // dd($userdata);
         if (Auth::attempt($userdata)) {
+            // dd($userdata);
             return redirect('/top');
         }else{
+            // dd($userdata);
             return redirect('/login')->with('flash_message', 'name or password is incorrect');
         }
     }
