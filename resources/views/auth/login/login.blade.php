@@ -13,6 +13,9 @@
   <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 </head>
 <body>
+  @if(session('flash_message'))
+  {{ session('flash_message') }}
+  @endif
   <form action="{{ route('loginPost') }}" method="POST">
     <div class="w-100 vh-100 d-flex" style="align-items:center; justify-content:center;">
       <div class="border vh-50 w-25">
@@ -38,7 +41,6 @@
       {{ csrf_field() }}
     </div>
   </form>
-  {{ Auth::id() }}
   </div>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
   <script src="{{ asset('js/register.js') }}" rel="stylesheet"></script>
