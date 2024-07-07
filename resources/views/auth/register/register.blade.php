@@ -32,10 +32,10 @@
             </div>
           </div>
           @error('over_name')
-            <span>{{ $message }}</span>
+            <span>※{{ $message }}</span>
           @enderror
           @error('under_name')
-            <span>{{ $message }}</span>
+            <span>※{{ $message }}</span>
           @enderror
           <div class="d-flex mt-3" style="justify-content:space-between">
             <div class="" style="width:140px">
@@ -52,10 +52,10 @@
             </div>
           </div>
           @error('over_name_kana')
-            <span>{{ $message }}</span>
+            <span>※{{ $message }}</span>
           @enderror
           @error('under_name_kana')
-            <span>{{ $message }}</span>
+            <span>※{{ $message }}</span>
           @enderror
           <div class="mt-3">
             <label class="m-0 d-block" style="font-size:13px">メールアドレス</label>
@@ -64,7 +64,7 @@
             </div>
           </div>
           @error('mail_address')
-            <span>{{ $message }}</span>
+            <span>※{{ $message }}</span>
           @enderror
         </div>
         <div class="mt-3">
@@ -76,7 +76,7 @@
           <label style="font-size:13px">その他</label>
         </div>
         @error('sex')
-          <span>{{ $message }}</span>
+          <span>※{{ $message }}</span>
         @enderror
         <div class="mt-3">
           <label class="d-block m-0 aa" style="font-size:13px">生年月日</label>
@@ -163,17 +163,17 @@
           <label style="font-size:13px">月</label>
         </div>
         @error('old_year')
-          <span>{{ $message }}</span>
+          <span>※{{ $message }}</span>
         @enderror
         @error('old_month')
-          <span>{{ $message }}</span>
+          <span>※{{ $message }}</span>
         @enderror
         @error('old_day')
-          <span>{{ $message }}</span>
+          <span>※{{ $message }}</span>
         @enderror
         @if($errors->has('birth_day'))
          @foreach($errors->get('birth_day') as $message)
-          <span>{{ $message }}</span>
+          <span>※{{ $message }}</span>
          @endforeach
         @endif
         <div class="mt-3">
@@ -188,7 +188,7 @@
           <label style="font-size:13px" class="other_role">生徒</label>
         </div>
         @error('roll')
-          <span>{{ $message }}</span>
+          <span>※{{ $message }}</span>
         @enderror
         <div class="select_teacher d-none">
           <label class="d-block m-0" style="font-size:13px">選択科目</label>
@@ -207,7 +207,7 @@
         </div>
         @if($errors->has('password'))
          @foreach($errors->get('password') as $message)
-          <span>{{ $message }}</span>
+          <span>※{{ $message }}</span>
          @endforeach
         @endif
         <div class="mt-3">
