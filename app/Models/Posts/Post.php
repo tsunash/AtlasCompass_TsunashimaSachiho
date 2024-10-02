@@ -23,6 +23,10 @@ class Post extends Model
         return $this->hasMany('App\Models\Posts\PostComment');
     }
 
+    public function Likes(){
+        return $this->hasMany('app\Models\Posts\Like','id');
+    }
+
     public function subCategories(){
         // リレーションの定義
     }
