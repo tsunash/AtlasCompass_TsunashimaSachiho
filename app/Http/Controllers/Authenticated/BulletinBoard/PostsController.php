@@ -22,6 +22,7 @@ class PostsController extends Controller
         $post_comment = new Post;
         foreach($posts as $post){
             $post->like_count = $like->likeCounts($post->id);
+            $post->comment_count = $post_comment->commentCounts($post->id);
         }
         if(!empty($request->keyword)){
             $posts = Post::with('user', 'postComments')
