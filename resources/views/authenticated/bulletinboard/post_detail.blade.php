@@ -7,14 +7,16 @@
         <div class="detail_inner_head">
           <div>
           </div>
-          @if($errors->any())
+          @if($errors->has('post_title')||$errors->has('post_body'))
             <ul>
-              @foreach($errors->all() as $message)
-              <li>※{{ $message }}</li>
+              @foreach($errors->get('post_title') as $error)
+              <li>{{ $error }}</li>
+              @endforeach
+              @foreach($errors->get('post_body') as $error)
+              <li>{{ $error }}</li>
               @endforeach
             </ul>
           @endif
-
           @if(Auth::id() == $post->user_id)
           <div>
             <span class="edit-modal-open" post_title="{{ $post->post_title }}" post_body="{{ $post->post }}" post_id="{{ $post->id }}">編集</span>
@@ -53,6 +55,16 @@
   <div class="w-50 p-3">
     <div class="comment_container border m-5">
       <div class="comment_area p-3">
+          @if($errors->has('comment')||$errors->has('post_id'))
+            <ul>
+              @foreach($errors->get('comment') as $error)
+              <li>{{ $error }}</li>
+              @endforeach
+              @foreach($errors->get('post_id') as $error)
+              <li>{{ $error }}</li>
+              @endforeach
+            </ul>
+          @endif
         <p class="m-0">コメントする</p>
         <textarea class="w-100" name="comment" form="commentRequest"></textarea>
         <input type="hidden" name="post_id" form="commentRequest" value="{{ $post->id }}">
