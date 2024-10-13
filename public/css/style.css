@@ -198,6 +198,12 @@ li{
   list-style:none;
   cursor:pointer;
 }
+.gray-out{
+  color: #808080;
+}
+.gray-out option{
+  color: #000;
+}
 
 /* ユーザー検索 */
 .reserve_users_area{
