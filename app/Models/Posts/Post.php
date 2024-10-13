@@ -24,11 +24,11 @@ class Post extends Model
     }
 
     public function Likes(){
-        return $this->hasMany('app\Models\Posts\Like','id');
+        return $this->hasMany('App\Models\Posts\Like','id');
     }
 
     public function subCategories(){
-        // リレーションの定義
+        return $this->belongsToMany('App\Models\Categories\SubCategory','post_sub_categories','post_id','sub_category_id');
     }
 
     // コメント数
