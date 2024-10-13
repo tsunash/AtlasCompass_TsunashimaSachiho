@@ -20,7 +20,7 @@ class PostsController extends Controller
 {
     public function show(Request $request){
         $posts = Post::with('user', 'postComments')->get();
-        $categories = MainCategory::get();
+        $categories = MainCategory::with('subCategories')->get();
         $like = new Like;
         $post_comment = new Post;
         foreach($posts as $post){
@@ -28,12 +28,18 @@ class PostsController extends Controller
             $post->comment_count = $post_comment->commentCounts($post->id);
         }
         if(!empty($request->keyword)){
-            $posts = Post::with('user', 'postComments')
+            $posts = Post::with('user','subCategories', 'postComments')
             ->where('post_title', 'like', '%'.$request->keyword.'%')
-            ->orWhere('post', 'like', '%'.$request->keyword.'%')->get();
+            ->orWhere('post', 'like', '%'.$request->keyword.'%')
+            ->orWhereHas('subCategories',function($query) use ($request){
+            $query->where('sub_category',$request->keyword);})
+            ->get();
         }else if($request->category_word){
             $sub_category = $request->category_word;
-            $posts = Post::with('user', 'postComments')->get();
+            $posts = Post::with('user','subCategories', 'postComments')
+            ->WhereHas('subCategories',function($query) use($sub_category){
+            $query->where('sub_category',$sub_category);})
+            ->get();
         }else if($request->like_posts){
             $likes = Auth::user()->likePostId()->get('like_post_id');
             $posts = Post::with('user', 'postComments')
