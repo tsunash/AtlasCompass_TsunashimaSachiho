@@ -23,10 +23,6 @@ class CalendarWeekDay{
     return $this->carbon->format("Y-m-d");
   }
 
-  function toDay(){
-    return Carbon::today()->format("Y-m-d");
-  }
-
   function dayPartCounts($ymd){
     $html = [];
     $one_part = ReserveSettings::with('users')->where('setting_reserve', $ymd)->where('setting_part', '1')->first();
@@ -34,19 +30,14 @@ class CalendarWeekDay{
     $three_part = ReserveSettings::with('users')->where('setting_reserve', $ymd)->where('setting_part', '3')->first();
 
     $html[] = '<div class="text-left">';
-    if($ymd <= $this->toDay()){
-      if($one_part){
-        $html[] = '<p class="day_part m-0 pt-1">1部参加</p>';
-      }
-      if($two_part){
-        $html[] = '<p class="day_part m-0 pt-1">2部参加</p>';
-      }
-      if($three_part){
-        $html[] = '<p class="day_part m-0 pt-1">3部参加</p>';
-      }
+    if($one_part){
+      $html[] = '<p class="day_part m-0 pt-1">1部</p>';
     }
-    if(!$one_part && !$two_part && !$three_part){
-      $html[] = '<p class="day_part m-0 pt-1">受付終了</p>';
+    if($two_part){
+      $html[] = '<p class="day_part m-0 pt-1">2部</p>';
+    }
+    if($three_part){
+      $html[] = '<p class="day_part m-0 pt-1">3部</p>';
     }
     $html[] = '</div>';
 
