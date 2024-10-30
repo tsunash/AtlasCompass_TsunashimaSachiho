@@ -13,6 +13,16 @@
     <div class="text-right w-75 m-auto">
       <input type="submit" class="btn btn-primary" value="予約する" form="reserveParts">
     </div>
+    <div class="modal js-modal">モーダル
+      <div class="modal__bg js-modal-close"></div>
+      <div class="modal__content">
+        <p  class="modal-inner-date">予約日：<span></span></p>
+        <p class="modal-inner-part">時間：<span></span></p>
+        <p>上記の予約をキャンセルしてもよろしいですか？</p>
+        <a class="btn btn-primary js-modal-close" href="">閉じる</a>
+        <a class="btn btn-danger" href="">キャンセル</a>
+      </div>
+    </div>
   </div>
 </div>
 @endsection
