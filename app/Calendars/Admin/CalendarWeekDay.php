@@ -3,6 +3,7 @@ namespace App\Calendars\Admin;
 
 use Carbon\Carbon;
 use App\Models\Calendars\ReserveSettings;
+use App\Models\Users\User;
 
 class CalendarWeekDay{
   protected $carbon;
@@ -26,19 +27,38 @@ class CalendarWeekDay{
   function dayPartCounts($ymd){
     $html = [];
     $one_part = ReserveSettings::with('users')->where('setting_reserve', $ymd)->where('setting_part', '1')->first();
+    if($one_part){
+      $one_part_count = $one_part->users()->count();
+    }else{
+      $one_part_count = 0;
+    }
+
     $two_part = ReserveSettings::with('users')->where('setting_reserve', $ymd)->where('setting_part', '2')->first();
+    if($two_part){
+      $two_part_count = $two_part->users()->count();
+    }else{
+      $two_part_count = 0;
+    }
+
     $three_part = ReserveSettings::with('users')->where('setting_reserve', $ymd)->where('setting_part', '3')->first();
+    if($three_part){
+      $three_part_count = $three_part->users()->count();
+    }else{
+      $three_part_count = 0;
+    }
 
     $html[] = '<div class="text-left">';
-    if($one_part){
+    // if($one_part){
       $html[] = '<p class="day_part m-0 pt-1">1部</p>';
-    }
-    if($two_part){
+      $html[] = '<p class="day_part m-0 pt-1">'.$one_part_count.'</p>';
+    // }
+    // if($two_part){
       $html[] = '<p class="day_part m-0 pt-1">2部</p>';
-    }
-    if($three_part){
-      $html[] = '<p class="day_part m-0 pt-1">3部</p>';
-    }
+      $html[] = '<p class="day_part m-0 pt-1">'.$two_part_count.'</p>';
+    // }
+    // if($three_part){
+      $html[] = '<p class="day_part m-0 pt-1">3部</p>';      $html[] = '<p class="day_part m-0 pt-1">'.$three_part_count.'</p>';
+    // }
     $html[] = '</div>';
 
     return implode("", $html);
@@ -48,7 +68,7 @@ class CalendarWeekDay{
   function onePartFrame($day){
     $one_part_frame = ReserveSettings::where('setting_reserve', $day)->where('setting_part', '1')->first();
     if($one_part_frame){
-      $one_part_frame = ReserveSettings::where('setting_reserve', $day)->where('setting_part', '1')->first()->limit_users;
+      $one_part_frame =  ReserveSettings::where('setting_reserve', $day)->where('setting_part', '1')->first()->limit_users;
     }else{
       $one_part_frame = "20";
     }
