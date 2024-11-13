@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Calendars\General\CalendarView;
 use App\Models\Calendars\ReserveSettings;
 use App\Models\Calendars\Calendar;
-use App\Models\USers\User;
+use App\Models\Users\User;
 use Auth;
 use DB;
 
@@ -25,9 +25,12 @@ class CalendarsController extends Controller
             $getDate = $request->getData;
             $reserveDays = array_filter(array_combine($getDate, $getPart));
             foreach($reserveDays as $key => $value){
-                $reserve_settings = ReserveSettings::where('setting_reserve', $key)->where('setting_part', $value)->first();
-                $reserve_settings->decrement('limit_users');
-                $reserve_settings->users()->attach(Auth::id());
+                $reserve_settings = ReserveSettings::with('users')->where('setting_reserve', $key)->where('setting_part', $value)->first();
+                $userAlreadyReserved = $reserve_settings->users()->where('user_id',Auth::id())->exists();
+                if(!$userAlreadyReserved){
+                    $reserve_settings->decrement('limit_users');
+                    $reserve_settings->users()->attach(Auth::id());
+                }
             }
             DB::commit();
         }catch(\Exception $e){
