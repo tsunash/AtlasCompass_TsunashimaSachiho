@@ -49,15 +49,19 @@ class CalendarWeekDay{
 
     $html[] = '<div class="text-left">';
     // if($one_part){
-      $html[] = '<p class="day_part m-0 pt-1">1部</p>';
+    $one_part_url= route('calendar.admin.detail',['date'=>$ymd , 'part'=>1]);
+      $html[] = '<p class="day_part m-0 pt-1"><a href="'.$one_part_url.'">1部</a></p>';
       $html[] = '<p class="day_part m-0 pt-1">'.$one_part_count.'</p>';
     // }
     // if($two_part){
-      $html[] = '<p class="day_part m-0 pt-1">2部</p>';
+      $two_part_url= route('calendar.admin.detail',['date'=>$ymd , 'part'=>2]);
+      $html[] = '<p class="day_part m-0 pt-1"><a href="'.$two_part_url.'">2部</a></p>';
       $html[] = '<p class="day_part m-0 pt-1">'.$two_part_count.'</p>';
     // }
     // if($three_part){
-      $html[] = '<p class="day_part m-0 pt-1">3部</p>';      $html[] = '<p class="day_part m-0 pt-1">'.$three_part_count.'</p>';
+      $three_part_url= route('calendar.admin.detail',['date'=>$ymd , 'part'=>3]);
+      $html[] = '<p class="day_part m-0 pt-1"><a href="'.$three_part_url.'">3部</a></p>';
+      $html[] = '<p class="day_part m-0 pt-1">'.$three_part_count.'</p>';
     // }
     $html[] = '</div>';
 
