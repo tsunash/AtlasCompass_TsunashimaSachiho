@@ -33,7 +33,6 @@ class RegisterFormRequest extends FormRequest
             'old_year' => 'required',
             'old_month' => 'required',
             'old_day' => 'required',
-            // 'birth_day' => 'required|date|after:2000-01-01|before:now',
             'role' => 'required|in:1,2,3,4',
             'password' => 'required|min:8|max:30|confirmed',
         ];
@@ -41,13 +40,14 @@ class RegisterFormRequest extends FormRequest
 
     public function withValidator($validator)
     {
-            $old_year = $this->input('old_year');
-            $old_month = $this->input('old_month');
-            $old_day = $this->input('old_day');
-            $data = $old_year . '-' . $old_month . '-' . $old_day;
-            $birth_day = date('Y-m-d', strtotime($data));
-            $today = date('Y-m-d');
-            $target = date('2000-01-01');
+
+        $old_year = $this->input('old_year');
+        $old_month = $this->input('old_month');
+        $old_day = $this->input('old_day');
+        $data = $old_year . '-' . $old_month . '-' . $old_day;
+        $birth_day = date('Y-m-d', strtotime($data));
+        $today = date('Y-m-d');
+        $target = date('2000-01-01');
 
         $validator->after(function ($validator) use($old_year,$old_month,$old_day,$birth_day,$today,$target){
             if(!isset($old_month,$old_day,$old_year)){
@@ -65,7 +65,7 @@ class RegisterFormRequest extends FormRequest
     public function messages()
     {
         return  [
-            'required' => ':attributeは必須です。',
+            'required' => ':attributeは必ず入力してください。',
             'string' => ':attributeは文字列で入力してください。',
             'max' => ':attributeは:max文字以内で入力してください。',
             'min' => ':attributeは:min文字以上で入力してください。',

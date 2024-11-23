@@ -29,15 +29,15 @@ class MainCategoryRequest extends FormRequest
     }
     public function messages(){
         return[
-            'required'=>':attributeは必須です',
-            'max'=>':attributeは:max文字以内で入力してください',
-            'string'=>':attributeは文字列で入力してください',
-            'unique'=>'入力した:attributeは既に存在します',
+            'required'=>':attributeは必ず入力してください。',
+            'max'=>':attributeは:max文字以内で入力してください。',
+            'string'=>':attributeは文字列で入力してください。',
+            'unique'=>'入力した:attributeは既に存在します。',
         ];
     }
     public function attributes(){
         return[
-            'main_category_name'=>'メインカテゴリー名',
+            'main_category_name'=>'メインカテゴリー',
         ];
     }
 }

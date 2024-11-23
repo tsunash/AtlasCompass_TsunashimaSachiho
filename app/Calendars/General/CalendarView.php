@@ -18,16 +18,16 @@ class CalendarView{
   function render(){
     $html = [];
     $html[] = '<div class="calendar text-center">';
-    $html[] = '<table class="table">';
+    $html[] = '<table class="table w-100" style="table-layout:fixed;">';
     $html[] = '<thead>';
     $html[] = '<tr>';
-    $html[] = '<th>月</th>';
-    $html[] = '<th>火</th>';
-    $html[] = '<th>水</th>';
-    $html[] = '<th>木</th>';
-    $html[] = '<th>金</th>';
-    $html[] = '<th>土</th>';
-    $html[] = '<th>日</th>';
+    $html[] = '<th class="border">月</th>';
+    $html[] = '<th class="border">火</th>';
+    $html[] = '<th class="border">水</th>';
+    $html[] = '<th class="border">木</th>';
+    $html[] = '<th class="border">金</th>';
+    $html[] = '<th class="border">土</th>';
+    $html[] = '<th class="border">日</th>';
     $html[] = '</tr>';
     $html[] = '</thead>';
     $html[] = '<tbody>';
@@ -57,7 +57,7 @@ class CalendarView{
           }
 
         }else{
-          $html[] = '<td class="calendar-td '.$day->getClassName().'">';
+          $html[] = '<td class="calendar-td '.$day->getClassName().' border">';
           $html[] = $day->render();
           if(in_array($day->everyDay(), $day->authReserveDay())){
             $reservePart = $day->authReserveDate($day->everyDay())->first()->setting_part;
@@ -68,15 +68,8 @@ class CalendarView{
             }else if($reservePart == 3){
               $reservePartText = "リモ3部";
             }
-            // if(s
-              // $startDay <= $day->everyDay() &&
-            // $toDay >= $day->everyDay()){
-            //   $html[] = '<p class="m-auto p-0 w-75" style="font-size:12px"></p>';
-            //   $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
-            // }else{
               $html[] = '<button type="submit" class="btn btn-danger p-0 w-75 delete-date-modal-open" name="delete_date" style="font-size:12px" value="'. $day->authReserveDate($day->everyDay())->first()->setting_reserve .'"  >'. $reservePartText .'</button>';
               $html[] = '<input type="hidden" class="reserve-part-hidden" name="getPart[]" value="'.$reservePart.'" form="reserveParts">';
-            // }
           }else{
             $html[] = $day->selectPart($day->everyDay());
           }

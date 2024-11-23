@@ -17,7 +17,7 @@ class CalendarWeekDay{
   }
 
   function render(){
-    return '<p class="day">' . $this->carbon->format("j") . '日</p>';
+    return '<p class="day m-0">' . $this->carbon->format("j") . '日</p>';
   }
 
   function everyDay(){
@@ -48,21 +48,25 @@ class CalendarWeekDay{
     }
 
     $html[] = '<div class="text-left">';
-    // if($one_part){
+
     $one_part_url= route('calendar.admin.detail',['date'=>$ymd , 'part'=>1]);
-      $html[] = '<p class="day_part m-0 pt-1"><a href="'.$one_part_url.'">1部</a></p>';
-      $html[] = '<p class="day_part m-0 pt-1">'.$one_part_count.'</p>';
-    // }
-    // if($two_part){
-      $two_part_url= route('calendar.admin.detail',['date'=>$ymd , 'part'=>2]);
-      $html[] = '<p class="day_part m-0 pt-1"><a href="'.$two_part_url.'">2部</a></p>';
-      $html[] = '<p class="day_part m-0 pt-1">'.$two_part_count.'</p>';
-    // }
-    // if($three_part){
-      $three_part_url= route('calendar.admin.detail',['date'=>$ymd , 'part'=>3]);
-      $html[] = '<p class="day_part m-0 pt-1"><a href="'.$three_part_url.'">3部</a></p>';
-      $html[] = '<p class="day_part m-0 pt-1">'.$three_part_count.'</p>';
-    // }
+    $html[] = '<div class="d-flex" style="justify-content:space-around;">';
+    $html[] = '<p class="day_part m-0 pt-1"><a href="'.$one_part_url.'">1部</a></p>';
+    $html[] = '<p class="day_part m-0 pt-1">'.$one_part_count.'</p>';
+    $html[] = '</div>';
+
+    $two_part_url= route('calendar.admin.detail',['date'=>$ymd , 'part'=>2]);
+    $html[] = '<div class="d-flex" style="justify-content:space-around;">';
+    $html[] = '<p class="day_part m-0 pt-1"><a href="'.$two_part_url.'">2部</a></p>';
+    $html[] = '<p class="day_part m-0 pt-1">'.$two_part_count.'</p>';
+    $html[] = '</div>';
+
+    $three_part_url= route('calendar.admin.detail',['date'=>$ymd , 'part'=>3]);
+    $html[] = '<div class="d-flex" style="justify-content:space-around;">';
+    $html[] = '<p class="day_part m-0 pt-1"><a href="'.$three_part_url.'">3部</a></p>';
+    $html[] = '<p class="day_part m-0 pt-1">'.$three_part_count.'</p>';
+    $html[] = '</div>';
+
     $html[] = '</div>';
 
     return implode("", $html);
@@ -97,7 +101,6 @@ class CalendarWeekDay{
     return $three_part_frame;
   }
 
-  //
   function dayNumberAdjustment(){
     $html = [];
     $html[] = '<div class="adjust-area">';

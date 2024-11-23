@@ -12,14 +12,16 @@
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&family=Oswald:wght@200&display=swap" rel="stylesheet">
   <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 </head>
-<body>
-  @if(session('flash_message'))
-  {{ session('flash_message') }}
-  @endif
+<body class="all_content">
+
   <form action="{{ route('loginPost') }}" method="POST">
-    <div class="w-100 vh-100 d-flex" style="align-items:center; justify-content:center;">
-      <div class="border vh-50 w-25">
+    <div class="w-100 vh-100 d-flex flex-column" style="align-items:center; justify-content:center;">
+      <img class="mb-5" src="{{ asset('image/atlas-black.png') }}" style="width:150px;" alt="Atlasロゴ">
+      <div class="border vh-50 w-25 p-3 shadow login_area">
         <div class="w-75 m-auto pt-5">
+           @if(session('flash_message'))
+            <span class="error_message">{{ session('flash_message') }}</span>
+           @endif
           <label class="d-block m-0" style="font-size:13px;">メールアドレス</label>
           <div class="border-bottom border-primary w-100">
             <input type="text" class="w-100 border-0" name="mail_address">
@@ -35,7 +37,7 @@
           <input type="submit" class="btn btn-primary" value="ログイン">
         </div>
         <div class="text-center">
-          <a href="{{ route('registerView') }}">新規登録</a>
+          <a href="{{ route('registerView') }}">新規登録はこちら</a>
         </div>
       </div>
       {{ csrf_field() }}

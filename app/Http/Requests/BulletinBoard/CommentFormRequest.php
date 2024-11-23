@@ -31,10 +31,10 @@ class CommentFormRequest extends FormRequest
 
     public function messages(){
         return[
-            'comment.required'=>':attributeは必ず入力してください',
+            'comment.required'=>':attributeは必ず入力してください。',
             'comment.string'=>':attributeは文字列で入力してください。',
-            'comment.max'=>':attributeは:max文字以内で入力してください',
-            'post_id'=>'対象の投稿は存在しません'
+            'comment.max'=>':attributeは:max文字以内で入力してください。',
+            'post_id'=>'対象の投稿は存在しません。'
         ];
     }
 

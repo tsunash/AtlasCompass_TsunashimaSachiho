@@ -6,23 +6,28 @@
       <div class="p-3">
         <div class="detail_inner_head">
           <div>
-          </div>
-          @if($errors->has('post_title')||$errors->has('post_body'))
-            <ul>
+            @if($errors->has('post_title')||$errors->has('post_body'))
+            <ul class="m-0">
               @foreach($errors->get('post_title') as $error)
-              <li>{{ $error }}</li>
+              <li class="error_message">{{ $error }}</li>
               @endforeach
               @foreach($errors->get('post_body') as $error)
-              <li>{{ $error }}</li>
+              <li class="error_message">{{ $error }}</li>
               @endforeach
             </ul>
-          @endif
-          @if(Auth::id() == $post->user_id)
-          <div>
-            <span class="edit-modal-open" post_title="{{ $post->post_title }}" post_body="{{ $post->post }}" post_id="{{ $post->id }}">編集</span>
-            <a href="{{ route('post.delete', ['id' => $post->id]) }}" onclick="return confirm('削除してよろしいですか？');">削除</a>
+            @endif
+            <div>
+              @foreach($post->subCategories as $category)
+              <div class="sub_category_icon rounded">{{ $category->sub_category}}</div>
+              @endforeach
+            </div>
           </div>
-          @endif
+          <div>
+          @if(Auth::id() == $post->user_id)
+            <span class="edit-modal-open btn btn-primary" post_title="{{ $post->post_title }}" post_body="{{ $post->post }}" post_id="{{ $post->id }}">編集</span>
+            <a class=" btn btn-danger" href="{{ route('post.delete', ['id' => $post->id]) }}" onclick="return confirm('削除してよろしいですか？');">削除</a>
+            @endif
+          </div>
         </div>
 
         <div class="contributor d-flex">
@@ -33,8 +38,8 @@
           </p>
           <span class="ml-5">{{ $post->created_at }}</span>
         </div>
-        <div class="detsail_post_title">{{ $post->post_title }}</div>
-        <div class="mt-3 detsail_post">{{ $post->post }}</div>
+        <div class="detail_post_title">{{ $post->post_title }}</div>
+        <div class="mt-3 detail_post">{{ $post->post }}</div>
       </div>
       <div class="p-3">
         <div class="comment_container">
@@ -56,12 +61,12 @@
     <div class="comment_container border m-5">
       <div class="comment_area p-3">
           @if($errors->has('comment')||$errors->has('post_id'))
-            <ul>
+            <ul class="m-0">
               @foreach($errors->get('comment') as $error)
-              <li>{{ $error }}</li>
+              <li class="error_message">{{ $error }}</li>
               @endforeach
               @foreach($errors->get('post_id') as $error)
-              <li>{{ $error }}</li>
+              <li class="error_message">{{ $error }}</li>
               @endforeach
             </ul>
           @endif

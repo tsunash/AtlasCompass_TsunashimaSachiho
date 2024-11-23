@@ -31,11 +31,11 @@ class PostFormRequest extends FormRequest
 
     public function messages(){
         return [
-            'post_title.required' => 'タイトルは必須です。',
+            'post_title.required' => 'タイトルは必ず入力してください。',
             'post_title.string' => 'タイトルは文字列で入力してください。',
             'post_title.max' => 'タイトルは:max文字以内で入力してください。',
-            'post_body.required' => '内容は必須です。',
-            'post_body.string' => '内容は文字列で入力してください。',
+            'post_body.required' => '投稿内容は必ず入力してください。',
+            'post_body.string' => '投稿内容は文字列で入力してください。',
             'post_body.max' => '最大文字数は:max文字です。',
         ];
     }

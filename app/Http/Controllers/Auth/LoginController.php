@@ -53,7 +53,7 @@ class LoginController extends Controller
             return redirect('/top');
         }else{
             return redirect('/login')
-            ->with('flash_message', 'name or password is incorrect');
+            ->with('flash_message', 'メールアドレスかパスワードが一致しません。');
         }
     }
 

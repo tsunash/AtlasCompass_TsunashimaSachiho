@@ -18,14 +18,14 @@
     </div>
     <div class="mt-3">
       @if($errors->first('post_title'))
-      <span class="error_message">{{ $errors->first('post_title') }}</span>
+      <p class="error_message">{{ $errors->first('post_title') }}</p>
       @endif
       <p class="mb-0">タイトル</p>
       <input type="text" class="w-100" form="postCreate" name="post_title" value="{{ old('post_title') }}">
     </div>
     <div class="mt-3">
       @if($errors->first('post_body'))
-      <span class="error_message">{{ $errors->first('post_body') }}</span>
+      <p class="error_message">{{ $errors->first('post_body') }}</p>
       @endif
       <p class="mb-0">投稿内容</p>
       <textarea class="w-100" form="postCreate" name="post_body">{{ old('post_body') }}</textarea>
@@ -39,29 +39,29 @@
   <div class="w-25 ml-auto mr-auto">
     <div class="category_area mt-5 p-5">
       <div class="">
+        @if($errors->has('main_category_name'))
+        @foreach($errors->get('main_category_name') as $error)
+        <p class="error_message">{{ $error }}</p>
+        @endforeach
+        @endif
         <p class="m-0">メインカテゴリー</p>
-          @if($errors->has('main_category_name'))
-            @foreach($errors->get('main_category_name') as $error)
-            <span class="error_message">{{ $error }}</span>
-            @endforeach
-          @endif
         <input type="text" class="w-100" name="main_category_name" form="mainCategoryRequest">
         <input type="submit" value="追加" class="w-100 btn btn-primary p-0" form="mainCategoryRequest">
         <form action="{{ route('main.category.create') }}" method="post" id="mainCategoryRequest">{{ csrf_field() }}</form>
       </div>
       <!-- サブカテゴリー追加 -->
       <div class="">
+        @if($errors->has('main_category_id'))
+        @foreach($errors->get('main_category_id') as $error)
+        <p class="error_message">{{ $error }}</p>
+        @endforeach
+        @endif
+        @if($errors->has('sub_category_name'))
+        @foreach($errors->get('sub_category_name') as $error)
+        <p class="error_message">{{ $error }}</p>
+        @endforeach
+        @endif
         <p class="m-0">サブカテゴリ―</p>
-          @if($errors->has('main_category_id'))
-            @foreach($errors->get('main_category_id') as $error)
-           <span class="error_message">{{ $error }}</span>
-            @endforeach
-          @endif
-          @if($errors->has('sub_category_name'))
-            @foreach($errors->get('sub_category_name') as $error)
-           <span class="error_message">{{ $error }}</span>
-            @endforeach
-          @endif
         <select type="text" class="w-100" name="main_category_id" form="subCategoryRequest">
           <option value="">---</option>
           @foreach($main_categories as $main_category)
