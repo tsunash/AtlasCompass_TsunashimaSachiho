@@ -4,50 +4,50 @@
 <div class="search_content w-100 border d-flex">
   <div class="reserve_users_area">
     @foreach($users as $user)
-    <div class="border shadow one_person m-2 rounded">
+    <div class="border shadow one_person m-2 p-3 rounded">
       <div>
-        <span>ID : </span><span>{{ $user->id }}</span>
+        <span style="color:gray;">ID : </span><span>{{ $user->id }}</span>
       </div>
-      <div><span>名前 : </span>
+      <div><span style="color:gray;">名前 : </span>
         <a href="{{ route('user.profile', ['id' => $user->id]) }}">
           <span>{{ $user->over_name }}</span>
           <span>{{ $user->under_name }}</span>
         </a>
       </div>
       <div>
-        <span>カナ : </span>
+        <span style="color:gray;">カナ : </span>
         <span>({{ $user->over_name_kana }}</span>
         <span>{{ $user->under_name_kana }})</span>
       </div>
       <div>
         @if($user->sex == 1)
-        <span>性別 : </span><span>男</span>
+        <span style="color:gray;">性別 : </span><span>男</span>
         @elseif($user->sex == 2)
-        <span>性別 : </span><span>女</span>
+        <span style="color:gray;">性別 : </span><span>女</span>
         @else
-        <span>性別 : </span><span>その他</span>
+        <span style="color:gray;">性別 : </span><span>その他</span>
         @endif
       </div>
       <div>
-        <span>生年月日 : </span><span>{{ $user->birth_day }}</span>
+        <span style="color:gray;">生年月日 : </span><span>{{ $user->birth_day }}</span>
       </div>
       <div>
         @if($user->role == 1)
-        <span>権限 : </span><span>教師(国語)</span>
+        <span style="color:gray;">権限 : </span><span>教師(国語)</span>
         @elseif($user->role == 2)
-        <span>権限 : </span><span>教師(数学)</span>
+        <span style="color:gray;">権限 : </span><span>教師(数学)</span>
         @elseif($user->role == 3)
-        <span>権限 : </span><span>講師(英語)</span>
+        <span style="color:gray;">権限 : </span><span>講師(英語)</span>
         @else
-        <span>権限 : </span><span>生徒</span>
+        <span style="color:gray;">権限 : </span><span>生徒</span>
         @endif
       </div>
       <div>
         @if($user->role == 4)
-        <span>選択科目 :
+        <span style="color:gray;">選択科目 :</span>
           @foreach($user->subjects as $subjects)
-           {{$subjects->subject}}
-          @endforeach</span>
+           <span>{{$subjects->subject}}</span>
+          @endforeach
         @endif
       </div>
     </div>

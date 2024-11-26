@@ -41,7 +41,7 @@ class CalendarView{
         $toDay = $this->carbon->copy()->format("Y-m-d");
 
         if($startDay <= $day->everyDay() && $toDay >= $day->everyDay()){
-          $html[] = '<td class="past-day border">';
+          $html[] = '<td class="past-day '.$day->getClassName().' border">';
           $html[] = $day->render();
           if(in_array($day->everyDay(), $day->authReserveDay())){
             $reservePart = $day->authReserveDate($day->everyDay())->first()->setting_part;
