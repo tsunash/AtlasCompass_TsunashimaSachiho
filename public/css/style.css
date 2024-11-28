@@ -275,6 +275,7 @@ li{
 .reset_btn {
   border: none;
   cursor: pointer;
+  background-color:inherit;
 }
 
 /* アコーディオン */
